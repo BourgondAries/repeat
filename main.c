@@ -22,7 +22,7 @@ repeat -s A\\ Message -n 10 -f - print 'A\\ Message' 10 times and end it with a 
 
 void printVersion()
 {
-	printf("repeat v1.2.0:2015.03.11\n");
+	printf("repeat v1.2.1:2015.03.11\n");
 }
 
 int main(int argc, char *argv[])
@@ -31,10 +31,10 @@ int main(int argc, char *argv[])
 	{
 		{"help",			no_argument,         0,  'h' },
 		{"version",			no_argument,         0,  'v' },
-		{"f",				no_argument,		 0,  'f' },
+		{"f",				no_argument,         0,  'f' },
 		{"s",				required_argument,   0,  's' },
 		{"n",				required_argument,   0,  'n' },
-		{"c",				required_argument,   0,  'c' }
+        {"c",               required_argument,   0,  'c' }
 	};
 
 	int long_index = 0;
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 				exit(EXIT_SUCCESS);
 				break;
 			case 'f':
-				oust_line_feed = 1;
+                oust_line_feed = 1;
 				break;
 			case 's':
 				string = optarg;
@@ -92,15 +92,21 @@ int main(int argc, char *argv[])
 		printf("You must specify '-n' with a natural(0) number. E.g.: 'repeat -n 20'.\n");
 		exit(EXIT_FAILURE);
 	}
-	if (is_s_specified == 1)
-		for (int i = 0; i < repeats; ++i)
-			printf("%s", string);
-    else if (is_s_specified == -1)
-        for (int i = 0; i < repeats; ++i)
-            putchar(string[0]);
-	else if (repeats > -1)
-		for (int i = 0; i < repeats; ++i)
-			putchar('=');
+	switch (is_s_specified)
+    {
+        case 1:
+    		for (int i = 0; i < repeats; ++i)
+    			printf("%s", string);
+            break;
+        case -1:
+            for (int i = 0; i < repeats; ++i)
+                putchar(string[0]);
+	       break;
+        default:
+    		for (int i = 0; i < repeats; ++i)
+    			putchar('=');
+            break;
+    }
 	if (oust_line_feed)
 		putchar('\n');
 }
