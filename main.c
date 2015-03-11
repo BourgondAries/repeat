@@ -63,11 +63,9 @@ int main(int argc, char *argv[])
 			case 'h':
 				printHelp();
 				exit(EXIT_SUCCESS);
-				break;
 			case 'v':
 				printVersion();
 				exit(EXIT_SUCCESS);
-				break;
 			case 'f':
                 oust_line_feed = 1;
 				break;
@@ -84,7 +82,6 @@ int main(int argc, char *argv[])
                 break;
 			default:
 				exit(EXIT_FAILURE);
-				break;
 		}
 	}
 	if (repeats < 0)
