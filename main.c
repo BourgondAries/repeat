@@ -1,6 +1,5 @@
 #include <stdio.h> // printf, putchar
 #include <stdlib.h> // atoi
-#include <string.h> // strcmp
 #include <getopt.h> // getopt_long
 
 void printHelp()
@@ -23,7 +22,7 @@ repeat -s A\\ Message -n 10 -f - print 'A\\ Message' 10 times and end it with a 
 
 void printVersion()
 {
-    printf("repeat v1.1.1:2015.03.11\n");
+    printf("repeat v1.1.2:2015.03.11\n");
 }
 
 int main(int argc, char *argv[])
